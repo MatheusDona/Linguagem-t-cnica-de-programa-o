@@ -10,6 +10,6 @@ int main() {
 	
 	area = (base * altura)/2;
 	
-	printf("A area é = %d e altura =%d e %f", base , altura, area);
+	printf("A area Ã© = %d e altura =%d e %f", base , altura, area);
 	return 0; 
 }
