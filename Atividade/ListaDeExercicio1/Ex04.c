@@ -6,9 +6,9 @@
 int main(int argc, char *argv[]) {
 	double salario, vendas, total;
 
-    printf("Digite seu salario: ")
+    printf("Digite seu salario: ");
 	scanf("%lf", &salario);
-    printf("Digite suas vendas: ")
+    printf("Digite suas vendas: ");
 	scanf("%lf", &vendas);
 
     total = salario + (vendas * 0.15);
