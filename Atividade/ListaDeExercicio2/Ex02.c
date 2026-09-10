@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
 
     m = k / 3.6;
 
-    printf("A velocidade em m/s é: %.2f\n", m);
+    printf("A velocidade em m/s Ã©: %.2f\n", m);
 	
 	return 0;
 }
