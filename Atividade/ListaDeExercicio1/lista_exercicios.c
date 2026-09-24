@@ -4,7 +4,7 @@
 int main() {
     int escolha;
     
-    printf("\n=== EXERCÍCIOS DE FIXAÇÃO - ENTRADA E SAÍDA ===\n");
+    printf("\n=== LISTA DE EXERCICIOS 01 ===\n");
     printf("1 - Dois números em ordem inversa\n");
     printf("2 - Notação científica\n");
     printf("3 - Conversão para binário\n");
