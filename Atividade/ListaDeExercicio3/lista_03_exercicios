@@ -1,0 +1,323 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+
+double calcular_inss(double salario_bruto) {
+    double inss = 0.0;
+    
+    if (salario_bruto <= 1412.0) {
+        inss = salario_bruto * 0.075;
+    } else if (salario_bruto <= 2666.68) {
+        inss = salario_bruto * 0.09;
+    } else if (salario_bruto <= 4000.03) {
+        inss = salario_bruto * 0.12;
+    } else {
+        inss = salario_bruto * 0.14;
+    }
+    
+    return inss;
+}
+
+double calcular_irpf(double salario_base) {
+    double irpf = 0.0;
+    
+    if (salario_base <= 2259.20) {
+        irpf = 0.0;
+    } else if (salario_base <= 2826.65) {
+        irpf = (salario_base * 0.075) - 169.44;
+    } else if (salario_base <= 3751.05) {
+        irpf = (salario_base * 0.15) - 381.44;
+    } else if (salario_base <= 4664.68) {
+        irpf = (salario_base * 0.225) - 662.77;
+    } else {
+        irpf = (salario_base * 0.275) - 896.00;
+    }
+    
+    return irpf;
+}
+
+int main() {
+    int escolha;
+    
+    printf("\n=== LISTA DE EXERCÍCIOS 03 ===\n");
+    printf("1 - Validador de CPF\n");
+    printf("2 - Conversor Dinâmico de Temperatura\n");
+    printf("3 - Média Escolar\n");
+    printf("4 - Reservado\n");
+    printf("5 - Terminal Infinity Cash\n");
+    printf("6 - Operação ENIAC - Trajetória\n");
+    printf("7 - Cálculo de INSS\n");
+    printf("8 - Cálculo de IRPF\n");
+    printf("9 - Emissão de Contra-cheque\n");
+    printf("\nDigite sua escolha: ");
+    scanf("%d", &escolha);
+    
+    switch (escolha) {
+        
+        case 1: {
+            printf("\n--- EXERCÍCIO 1: VALIDADOR DE CPF ---\n");
+            int n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11;
+        	int soma, resto, digito1, digito2;
+	
+        	printf("Digite seu cpf(sem pontos): ");
+            scanf("%1d%1d%1d%1d%1d%1d%1d%1d%1d%1d%1d", &n1, &n2, &n3, &n4, &n5, &n6, &n7, &n8, &n9, &n10, &n11);
+	
+        	soma = n1 * 10 + n2 * 9 + n3 * 8 + n4 * 7 + n5 * 6 + n6 * 5 + n7 * 4 + n8 * 3 + n9 * 2;
+        	resto = soma % 11;
+	
+        	if(resto < 2) {
+        		digito1 = 0;
+        	} else{
+        		digito1 = 11 - resto;
+        	}
+	
+        	soma = n1 * 11 + n2 * 10 + n3 * 9 + n4 * 8 + n5 * 7 + n6 * 6 + n7 * 5 +  n8 * 4 + n9 * 3 + digito1 * 2;
+        	resto = soma % 11;
+	
+        	if(resto < 2) {
+        		digito2 = 0;
+        	} else{
+        		digito2 = 11 - resto;
+        	}
+	
+        	if(digito1 == n10 && digito2 == n11) {
+        		printf("CPF valido");
+        	} else {
+        		printf("CPF invalido");
+        	}
+            break;
+        }
+        
+        case 2: {
+            printf("\n--- EXERCÍCIO 2: CONVERSOR DINÂMICO DE TEMPERATURA ---\n");
+            double temperatura;
+            double resultado;
+            int tipo;
+            
+            printf("Digite a temperatura: ");
+            scanf("%lf", &temperatura);
+            
+            printf("Tipo: (1) Celsius para Fahrenheit ou (2) Fahrenheit para Celsius: ");
+            scanf("%d", &tipo);
+            
+            if (tipo == 1) {
+                resultado = (temperatura * 9.0 / 5.0) + 32.0;
+                printf("%.2f°C = %.2f°F\n", temperatura, resultado);
+            } else if (tipo == 2) {
+                resultado = (temperatura - 32.0) * 5.0 / 9.0;
+                printf("%.2f°F = %.2f°C\n", temperatura, resultado);
+            }
+            break;
+        }
+        
+        case 3: {
+            printf("\n--- EXERCÍCIO 3: MÉDIA ESCOLAR ---\n");
+            char nome[50];
+            double nota1, nota2, nota3;
+            double media;
+            double falta_para_dez;
+            
+            printf("Digite o nome do aluno: ");
+            scanf("%s", nome);
+            
+            printf("Digite a 1ª nota: ");
+            scanf("%lf", &nota1);
+            
+            printf("Digite a 2ª nota: ");
+            scanf("%lf", &nota2);
+            
+            printf("Digite a 3ª nota: ");
+            scanf("%lf", &nota3);
+            
+            media = (nota1 + nota2 + nota3) / 3.0;
+            
+            printf("\n========== RESULTADO ==========\n");
+            printf("Aluno: %s\n", nome);
+            printf("Notas: %.2f, %.2f, %.2f\n", nota1, nota2, nota3);
+            printf("Média: %.2f\n", media);
+            
+            if (media >= 7.0) {
+                printf("Status: APROVADO\n");
+            } else if (media >= 4.0) {
+                falta_para_dez = 10.0 - media;
+                printf("Status: EXAME\n");
+                printf("Falta para atingir 10: %.2f\n", falta_para_dez);
+            } else {
+                printf("Status: REPROVADO\n");
+            }
+            break;
+        }
+        
+        case 5: {
+            printf("\n--- EXERCÍCIO 5: TERMINAL INFINITY CASH ---\n");
+            double valor;
+            int notas_100, notas_50, notas_10, notas_5, notas_2, notas_1;
+            double restante;
+            
+            printf("Digite o valor a sacar: R$ ");
+            scanf("%lf", &valor);
+            
+            notas_100 = (int)valor / 100;
+            restante = valor - (notas_100 * 100);
+            
+            notas_50 = (int)restante / 50;
+            restante = restante - (notas_50 * 50);
+            
+            notas_10 = (int)restante / 10;
+            restante = restante - (notas_10 * 10);
+            
+            notas_5 = (int)restante / 5;
+            restante = restante - (notas_5 * 5);
+            
+            notas_2 = (int)restante / 2;
+            restante = restante - (notas_2 * 2);
+            
+            notas_1 = (int)restante;
+            
+            printf("\n========== RESUMO DO SAQUE ==========\n");
+            printf("Notas de 100: %d\n", notas_100);
+            printf("Notas de 50: %d\n", notas_50);
+            printf("Notas de 10: %d\n", notas_10);
+            printf("Notas de 5: %d\n", notas_5);
+            printf("Notas de 2: %d\n", notas_2);
+            printf("Notas de 1: %d\n", notas_1);
+            printf("Total: R$ %.2f\n", valor);
+            break;
+        }
+        
+        case 6: {
+            printf("\n--- EXERCÍCIO 6: OPERAÇÃO ENIAC - TRAJETÓRIA ---\n");
+            double v0, angulo_graus;
+            double PI = 3.141592;
+            double angulo_rad;
+            double vx, vy;
+            double tempo;
+            double alcance;
+            double altura;
+            double g = 9.8;
+            double k = 0.5;
+            double tempo_total;
+            
+            printf("Digite a velocidade inicial (m/s): ");
+            scanf("%lf", &v0);
+            
+            printf("Digite o ângulo (graus): ");
+            scanf("%lf", &angulo_graus);
+            
+            angulo_rad = angulo_graus * PI / 180.0;
+            
+            vx = v0 * cos(angulo_rad);
+            vy = v0 * sin(angulo_rad);
+            
+            tempo = 0.0;
+            alcance = 0.0;
+            altura = 0.0;
+            tempo_total = 0.0;
+            
+            while (altura >= 0.0 && tempo < 100.0) {
+                altura = vy * tempo - (0.5 * g * tempo * tempo);
+                
+                if (altura < 0.0) {
+                    break;
+                }
+                
+                alcance = vx * tempo;
+                tempo_total = tempo;
+                tempo = tempo + 0.01;
+            }
+            
+            printf("\n========== RESULTADO ==========\n");
+            printf("Velocidade Inicial: %.2f m/s\n", v0);
+            printf("Ângulo: %.2f graus\n", angulo_graus);
+            printf("Alcance Máximo: %.2f metros\n", alcance);
+            printf("Tempo de Voo: %.2f segundos\n", tempo_total);
+            break;
+        }
+        
+        case 7: {
+            printf("\n--- EXERCÍCIO 7: CÁLCULO DE INSS ---\n");
+            double salario_bruto;
+            double inss;
+            
+            printf("Digite o salário bruto: R$ ");
+            scanf("%lf", &salario_bruto);
+            
+            inss = calcular_inss(salario_bruto);
+            
+            printf("\n========== RESULTADO ==========\n");
+            printf("Salário Bruto: R$ %.2f\n", salario_bruto);
+            printf("INSS: R$ %.2f\n", inss);
+            break;
+        }
+        
+        case 8: {
+            printf("\n--- EXERCÍCIO 8: CÁLCULO DE IRPF ---\n");
+            double salario_base;
+            double irpf;
+            
+            printf("Digite o salário-base (Bruto - INSS): R$ ");
+            scanf("%lf", &salario_base);
+            
+            irpf = calcular_irpf(salario_base);
+            
+            printf("\n========== RESULTADO ==========\n");
+            printf("Salário-Base: R$ %.2f\n", salario_base);
+            printf("IRPF: R$ %.2f\n", irpf);
+            break;
+        }
+        
+        case 9: {
+            printf("\n--- EXERCÍCIO 9: EMISSÃO DE CONTRA-CHEQUE ---\n");
+            char nome_func[50];
+            double valor_hora;
+            double horas_mes;
+            double salario_bruto;
+            double inss;
+            double salario_base;
+            double irpf;
+            double salario_liquido;
+            
+            printf("Digite o nome do funcionário: ");
+            scanf("%s", nome_func);
+            
+            printf("Digite o valor da hora trabalhada: R$ ");
+            scanf("%lf", &valor_hora);
+            
+            printf("Digite a quantidade de horas no mês: ");
+            scanf("%lf", &horas_mes);
+            
+            salario_bruto = valor_hora * horas_mes;
+            inss = calcular_inss(salario_bruto);
+            salario_base = salario_bruto - inss;
+            irpf = calcular_irpf(salario_base);
+            salario_liquido = salario_base - irpf;
+            
+            printf("\n");
+            printf("========================================\n");
+            printf("           CONTRA-CHEQUE MENSAL\n");
+            printf("========================================\n");
+            printf("Funcionário: %s\n", nome_func);
+            printf("Valor/Hora: R$ %.2f\n", valor_hora);
+            printf("Horas/Mês: %.2f\n", horas_mes);
+            printf("----------------------------------------\n");
+            printf("PROVENTOS\n");
+            printf("Salário Bruto: R$ %.2f\n", salario_bruto);
+            printf("----------------------------------------\n");
+            printf("DESCONTOS\n");
+            printf("INSS: R$ %.2f\n", inss);
+            printf("IRPF: R$ %.2f\n", irpf);
+            printf("----------------------------------------\n");
+            printf("RESULTADO\n");
+            printf("Salário Líquido: R$ %.2f\n", salario_liquido);
+            printf("========================================\n");
+            break;
+        }
+        
+        default: {
+            printf("\nOpção inválida!\n");
+        }
+    }
+    
+    return 0;
+}
