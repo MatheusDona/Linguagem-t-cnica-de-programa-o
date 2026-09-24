@@ -4,7 +4,7 @@
 int main() {
     int escolha;
     
-    printf("\n=== EXERCÍCIOS DE FIXAÇÃO II - ENTRADA E SAÍDA ===\n");
+    printf("\n=== LISTA DE EXERCICIOS 2 ===\n");
     printf("1 - Ano de nascimento\n");
     printf("2 - Conversão de km/h para m/s\n");
     printf("3 - Conversão de reais para dólares\n");
